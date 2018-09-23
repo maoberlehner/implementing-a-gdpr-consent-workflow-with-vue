@@ -1,11 +1,13 @@
 import Cookies from 'js-cookie';
 
+const COOKIE_NAME = `eu_cookie`;
+
 export default {
   checkConsent() {
-    return Cookies.get(`eu_cookie`);
+    return Cookies.get(COOKIE_NAME);
   },
   grantConsent() {
-    Cookies.set(`eu_cookie`, true, { expires: 30 });
+    Cookies.set(COOKIE_NAME, true, { expires: 30 });
 
     return true;
   },
