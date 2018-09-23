@@ -1,5 +1,9 @@
 export default {
   props: {
+    immediate: {
+      default: false,
+      type: Boolean,
+    },
     provider: {
       type: Object,
     },
@@ -12,6 +16,9 @@ export default {
       error: null,
       loading: false,
     };
+  },
+  created() {
+    if (this.immediate) this.checkConsent();
   },
   methods: {
     async checkConsent({ grantedCallback } = {}) {

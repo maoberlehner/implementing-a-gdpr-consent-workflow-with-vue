@@ -3,7 +3,7 @@
     <h1 class="text-center">GDPR Consent Workflow with Vue.js</h1>
 
     <section class="rounded shadow-lg mt-12 p-6">
-      <h2>Demo</h2>
+      <h2>Example 1: Newsletter form</h2>
 
       <div class="newsletter-demo mt-4 p-6">
         <newsletter-form/>
@@ -53,6 +53,29 @@
       </label>
     </section>
 
+    <section class="relative rounded shadow-lg mt-12 p-6">
+      <h2>Example 2: Cookie bar</h2>
+
+      <p class="mt-2">
+        This is an example implementation of the EU cookie
+        bar we've all learned to love in recent years.
+      </p>
+
+      <p class="mt-2">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+        invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
+      </p>
+
+      <p class="mt-2">
+        Et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+        Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
+      </p>
+
+      <cookie-bar/>
+    </section>
+
     <portal-target name="modal"/>
   </div>
 </template>
@@ -60,11 +83,13 @@
 <script>
 import { fakeDb } from './services/gdpr-api';
 
+import CookieBar from './components/CookieBar.vue';
 import NewsletterForm from './components/NewsletterForm.vue';
 
 export default {
   name: `App`,
   components: {
+    CookieBar,
     NewsletterForm,
   },
   data() {
