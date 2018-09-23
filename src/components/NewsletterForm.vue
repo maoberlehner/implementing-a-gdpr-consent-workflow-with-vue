@@ -1,10 +1,13 @@
 <template>
-  <gdpr-consent-frame :provider="gdprApiProvider">
+  <gdpr-consent-frame
+    :provider="gdprApiProvider"
+    @request-consent="showConsentModal = true"
+    @consent-denied="showConsentModal = false"
+    @consent-granted="subscribe"
+  >
     <div
       slot-scope="{
-        askForConsent,
         checkConsent,
-        consentDenied,
         denyConsent,
         error,
         grantConsent,
@@ -46,16 +49,10 @@
             focus:outline-none
             focus:shadow-outline
           "
-          @click="checkConsent({ grantedCallback: subscribe })"
+          @click="checkConsent"
         >
           {{ loading ? `Loading ...` : `Subscribe` }}
         </button>
-        <p
-          v-if="consentDenied"
-          class="mt-2 text-red"
-        >
-          Please give us your consent, thanks!
-        </p>
         <p
           v-if="error"
           class="mt-2 text-red"
@@ -65,9 +62,9 @@
       </template>
 
       <gdpr-consent-modal
-        v-if="askForConsent"
+        v-if="showConsentModal"
         @deny-consent="denyConsent"
-        @grant-consent="grantConsent({ grantedCallback: subscribe })"
+        @grant-consent="grantConsent"
       />
     </div>
   </gdpr-consent-frame>
@@ -87,6 +84,7 @@ export default {
   },
   data() {
     return {
+      showConsentModal: false,
       subscribed: false,
     };
   },
@@ -95,7 +93,11 @@ export default {
   },
   methods: {
     subscribe() {
-      // In a real application, you'd most likely trigger an API request here.
+      // We hide the modal because the user must
+      // have given their consent at this point.
+      this.showConsentModal = false;
+      // In a real application, you'd most
+      // likely trigger an API request here.
       this.subscribed = true;
     },
   },

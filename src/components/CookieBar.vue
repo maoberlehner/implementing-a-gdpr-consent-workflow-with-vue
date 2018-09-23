@@ -2,11 +2,12 @@
   <gdpr-consent-frame
     :provider="gdprCookieProvider"
     immediate
+    @request-consent="visible = true"
+    @consent-granted="visible = false"
   >
     <div
-      v-if="askForConsent"
+      v-if="visible"
       slot-scope="{
-        askForConsent,
         error,
         grantConsent,
         loading,
@@ -52,6 +53,11 @@ export default {
   name: `CookieBar`,
   components: {
     GdprConsentFrame,
+  },
+  data() {
+    return {
+      visible: false,
+    };
   },
   created() {
     this.gdprCookieProvider = gdprCookieProvider;
