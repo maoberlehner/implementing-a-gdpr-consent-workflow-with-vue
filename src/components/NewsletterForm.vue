@@ -13,49 +13,22 @@
         grantConsent,
         loading,
       }"
+      class="o-vertical-spacing"
     >
       <template v-if="subscribed">
-        <p class="text-green">
+        <p class="success">
           Thank you for subscribing!
         </p>
       </template>
       <template v-else>
-        <h3 class="mb-2">Subscribe to our Newsletter!</h3>
-        <input
-          type="mail"
-          class="
-            shadow
-            appearance-none
-            border
-            rounded
-            py-2
-            px-3
-            text-grey-darker
-            leading-tight
-            focus:outline-none
-            focus:shadow-outline
-          "
-        >
-        <button
-          class="
-            ml-2
-            bg-blue
-            hover:bg-blue-dark
-            text-white
-            font-bold
-            py-2
-            px-4
-            rounded
-            focus:outline-none
-            focus:shadow-outline
-          "
-          @click="checkConsent"
-        >
+        <h3>Subscribe to our Newsletter!</h3>
+        <input type="email">
+        <button @click="checkConsent">
           {{ loading ? `Loading ...` : `Subscribe` }}
         </button>
         <p
           v-if="error"
-          class="mt-2 text-red"
+          class="error"
         >
           There was an error, please try again!
         </p>

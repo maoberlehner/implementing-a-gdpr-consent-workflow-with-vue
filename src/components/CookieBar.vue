@@ -12,31 +12,17 @@
         grantConsent,
         loading,
       }"
-      class="CookieBar p-4 absolute pin-x pin-b"
+      class="CookieBar"
     >
-      <p class="mt-2">
+      <p>
         Please give us your consent to use cookies, thanks!
       </p>
-      <button
-        class="
-          mt-2
-          bg-blue
-          hover:bg-blue-dark
-          text-white
-          font-bold
-          py-2
-          px-4
-          rounded
-          focus:outline-none
-          focus:shadow-outline
-        "
-        @click="grantConsent"
-      >
+      <button @click="grantConsent">
         {{ loading ? `Loading ...` : `Accept` }}
       </button>
       <p
         v-if="error"
-        class="mt-2 text-red"
+        class="error"
       >
         There was an error, please try again!
       </p>
@@ -65,8 +51,15 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '../assets/scss/settings/**/*';
+
 .CookieBar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: setting-spacing(m);
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
 }

@@ -4,11 +4,13 @@
     @close="$emit(`deny-consent`)"
     @decline="$emit(`deny-consent`)"
   >
-    <h1>GDPR Informations</h1>
-    <p class="mt-2">
-      We want to do a lot of stuff with your data, please
-      give us your consent to do so, thank you very much!
-    </p>
+    <div class="o-content">
+      <h2>GDPR Informations</h2>
+      <p>
+        We want to do a lot of stuff with your data, please
+        give us your consent to do so, thank you very much!
+      </p>
+    </div>
   </app-modal>
 </template>
 

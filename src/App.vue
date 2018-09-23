@@ -1,74 +1,65 @@
 <template>
-  <div class="container mx-auto max-w-l p-4">
-    <h1 class="text-center">GDPR Consent Workflow with Vue.js</h1>
+  <div class="App o-container o-vertical-spacing o-vertical-spacing--xl">
+    <h1>GDPR Consent Workflow with Vue.js</h1>
 
-    <section class="rounded shadow-lg mt-12 p-6">
+    <section class="App__example o-vertical-spacing o-vertical-spacing--l">
       <h2>Example 1: Newsletter form</h2>
 
-      <div class="newsletter-demo mt-4 p-6">
+      <div class="App__newsletter-demo">
         <newsletter-form/>
       </div>
 
-      <h3 class="mt-6">Fake API response settings</h3>
-      <p class="mt-2">
-        Configure the response of the fake GDPR API. The example above does not make real API
-        requests, instead you can use the configuration options below to simulate the behavior
-        of the fake API which is used for this demo.
-      </p>
+      <div class="o-vertical-spacing o-vertical-spacing--l">
+        <div class="o-content">
+          <h3>Fake API response settings</h3>
+          <p>
+            Configure the response of the fake GDPR API. The example above does not make real API
+            requests, instead you can use the configuration options below to simulate the behavior
+            of the fake API which is used for this demo.
+          </p>
+        </div>
 
-      <label class="block mt-4">
-        <input
-          v-model="fakeDb.consentGranted"
-          type="checkbox"
-        >
-        <span class="ml-2 text-grey-darker text-sm font-bold">Consent granted</span>
-      </label>
+        <div class="o-vertical-spacing">
+          <label>
+            <input
+              v-model="fakeDb.consentGranted"
+              type="checkbox"
+            >
+            Consent granted
+          </label>
 
-      <label class="block mt-4">
-        <input
-          v-model="fakeDb.error"
-          type="checkbox"
-        >
-        <span class="ml-2 text-grey-darker text-sm font-bold">Simulate error</span>
-      </label>
+          <label>
+            <input
+              v-model="fakeDb.error"
+              type="checkbox"
+            >
+            Simulate error
+          </label>
 
-      <label class="block mt-4">
-        <span class="block text-grey-darker text-sm font-bold">Response time</span>
-        <input
-          v-model="fakeDb.timeout"
-          class="
-            mt-2
-            shadow
-            appearance-none
-            border
-            rounded
-            py-2
-            px-3
-            text-grey-darker
-            leading-tight
-            focus:outline-none
-            focus:shadow-outline
-          "
-        >
-      </label>
+          <label>
+            Response time
+            <input v-model="fakeDb.timeout">
+          </label>
+        </div>
+      </div>
     </section>
 
-    <section class="relative rounded shadow-lg mt-12 p-6">
+    <section class="App__example o-content">
       <h2>Example 2: Cookie bar</h2>
 
-      <p class="mt-2">
+      <p>
         This is an example implementation of the EU cookie
         bar we've all learned to love in recent years.
       </p>
 
-      <p class="mt-2">
+      <p>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
         invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
         et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
         Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
       </p>
 
-      <p class="mt-2">
+      <p>
         Et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
         Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
       </p>
@@ -100,8 +91,60 @@ export default {
 };
 </script>
 
-<style>
-.newsletter-demo {
-  background: #efefefef;
+<style lang="scss">
+@import './assets/scss/settings/**/*';
+@import './assets/scss/generic/**/*';
+@import '{
+  .o-container,
+  .o-container--s,
+} from ~@avalanche/object-container';
+@import '{
+  .o-vertical-spacing,
+  .o-vertical-spacing--l,
+  .o-vertical-spacing--xl,
+} from ~@avalanche/object-vertical-spacing';
+@import './assets/scss/objects/**/*';
+
+.App {
+  padding-top: setting-spacing(xl);
+  padding-bottom: setting-spacing(xl);
+
+  h1 {
+    text-align: center;
+  }
+
+  input:not([type="checkbox"]) {
+    display: block;
+    padding: setting-spacing(s);
+    width: 100%;
+    border: 1px solid #dedede;
+  }
+
+  label {
+    display: block;
+    color: #444;
+    font-weight: 700;
+  }
+
+  &__example {
+    position: relative;
+    padding: setting-spacing(l);
+    overflow: hidden;
+    border-radius: 0.25em;
+    box-shadow: 0 0.35em 1em rgba(#000, 0.2);
+  }
+
+  &__newsletter-demo {
+    padding: setting-spacing(m);
+    background: #efefefef;
+  }
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
 }
 </style>

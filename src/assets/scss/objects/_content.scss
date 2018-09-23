@@ -1,0 +1,9 @@
+@import '../settings/**/*';
+
+.o-content {
+  line-height: 1.4;
+
+  * + * {
+    margin-top: setting-spacing(m);
+  }
+}
